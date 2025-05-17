@@ -51,21 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadFiles();
 
     // Functions
-    function loadFiles() {
-        fetch('php/list_files.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    updateStorageInfo(data.storage);
-                    renderFiles(data.files);
-                } else {
-                    showAlert('error', data.message || 'Erro ao carregar arquivos.');
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao carregar arquivos:', error);
-                showAlert('error', 'Falha ao se comunicar com o servidor.');
-            });
+        function loadFiles() {        fetch('php/list_files.php')            .then(response => {                if (!response.ok) {                    throw new Error(`Erro HTTP: ${response.status}`);                }                return response.json();            })            .then(data => {                if (data.success) {                    updateStorageInfo(data.storage);                    renderFiles(data.files);                } else {                    showAlert('error', data.message || 'Erro ao carregar arquivos.');                }            })            .catch(error => {                console.error('Erro ao carregar arquivos:', error);                showAlert('error', 'Falha ao se comunicar com o servidor. Verifique se o Apache está rodando.');            });
     }
 
     function handleFileUpload(file) {

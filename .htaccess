@@ -1,0 +1,38 @@
+# Habilitar o PHP
+<IfModule mod_php7.c>
+    php_flag display_errors on
+    php_value upload_max_filesize 2G
+    php_value post_max_size 2G
+    php_value max_execution_time 300
+    php_value max_input_time 300
+</IfModule>
+
+# Permitir acesso às APIs PHP
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    
+    # Permitir CORS
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Proteger arquivos sensíveis
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Diretórios de uploads
+<Directory "uploads">
+    Options -Indexes
+    AllowOverride All
+    Require all granted
+</Directory>
+
+# Diretório do banco de dados
+<Directory "db">
+    Order deny,allow
+    Deny from all
+</Directory> 
