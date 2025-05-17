@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArquivoFácil - Armazenamento de Arquivos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>ArquivoFácil</h1>
+            <p>Sua plataforma de armazenamento de arquivos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Alertas -->
+        <div id="alert-error" class="alert error"></div>
+        <div id="alert-success" class="alert success"></div>
+        
+        <!-- Informações de Armazenamento -->
+        <section class="storage-info">
+            <h2>Armazenamento</h2>
+            <div class="storage-bar">
+                <div id="storage-bar-fill" class="storage-bar-fill" style="width: 0%"></div>
+            </div>
+            <div class="storage-text">
+                <span><span id="storage-used">0</span> de <span id="storage-total">999</span> GB</span>
+                <span><span id="storage-percentage">0</span>% usado</span>
+            </div>
+        </section>
+        
+        <!-- Seção de Upload -->
+        <section class="upload-section">
+            <h2>Enviar Arquivos</h2>
+            <div id="upload-area" class="upload-area">
+                <div class="upload-icon">📤</div>
+                <p>Arraste e solte um arquivo aqui ou clique para selecionar</p>
+                <button class="btn">Selecionar Arquivo</button>
+                <input type="file" id="file-input" hidden>
+            </div>
+        </section>
+        
+        <!-- Lista de Arquivos -->
+        <section class="file-list">
+            <h2>Meus Arquivos</h2>
+            <div id="file-grid" class="file-grid">
+                <!-- Os arquivos serão inseridos aqui dinamicamente pelo JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ArquivoFácil - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Overlay de progresso para upload -->
+    <div id="progress-overlay" class="progress-overlay">
+        <div class="progress-container">
+            <h3>Enviando arquivo</h3>
+            <div class="progress-bar">
+                <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+            </div>
+            <p id="progress-text">Preparando...</p>
+        </div>
+    </div>
+
+    <!-- Visualizador de arquivo -->
+    <div id="viewer-container" class="viewer-container">
+        <div id="viewer-content" class="viewer-content"></div>
+        <button id="viewer-close" class="viewer-close">×</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 
